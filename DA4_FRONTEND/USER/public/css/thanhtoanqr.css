@@ -1,0 +1,59 @@
+.giua{
+    background-image: #b9b3b3;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin-left: 400px;
+    width: 50vw;
+    top: 0;
+    left: 0;
+}
+
+.formqr{
+    width: 200px;
+    margin-right: 50px;
+    margin-top: -200px;
+    margin-left: 30px;
+    height: 378px;
+    background: rgba(247, 250, 237, 0.8);
+    border: 1px solid rgb(200, 212, 208);
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(112, 185, 151, 0.5); 
+    flex-grow: 1;
+    padding: 30px 30px 40px;
+    background-origin: 0px 0px 25px 20px rgba(255, 255, 255, 0.8);
+}
+.maqr{
+    margin-left: 230px;
+}
+.muahang {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 140px;
+}
+.tieptuc button{
+    border-radius: 20px;
+    width: 200px;
+    height: 40px;
+    background-color: #326e51;
+    color: white;
+    margin-left: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.donmua button{
+    border-radius: 20px;
+    width: 150px;
+    height: 40px;
+    background-color: #326e51;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+

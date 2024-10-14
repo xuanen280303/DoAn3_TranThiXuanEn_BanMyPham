@@ -1,0 +1,88 @@
+.link-out {
+	margin-top: -20px;
+    width: 100%;
+    height: auto;
+	color: gray;
+	cursor: pointer;
+}
+.link-out .link {
+    max-width: 1220px;
+    font-size: 14px;
+    padding: 15px;
+}
+.link-out .link a {
+    text-decoration: none;
+    margin-left: 0px;
+    color: gray;
+}
+
+.bolocs {
+    margin-top: 30px;
+}
+
+.title-boloc {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+.inputs-loc {
+    display: flex;
+    align-items: center;
+}
+
+.inputs-loc input[type="number"],
+.inputs-loc input[type="text"] {
+    width: 210px;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.inputs-loc input[type="number"]::placeholder,
+.inputs-loc input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+.locgia {
+    margin-bottom: 20px;
+}
+
+.title-locgia {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.inputs-loc {
+    display: flex;
+    align-items: center;
+}
+
+.inputs-loc input[type="number"] {
+    width: 100px;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.inputs-loc input[type="number"]::placeholder {
+    color: #aaa;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #FF6600;
+    color: #fff;
+    margin-left: 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #dd600d;
+}

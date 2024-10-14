@@ -1,0 +1,179 @@
+.header_checkout {
+  background-color: #ffffff;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+}
+.headercheckout{
+  background-color: rgb(50, 110, 81);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.header_checkout img {
+  width: 220px;
+  margin-left: 150px;
+  margin-top: -45px;
+  padding: 18px;
+  height: 120px;
+}
+.coverorder {
+  width: 100%;
+}
+.tonhat-co {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+.bentrai-co {
+  margin-top: 10px;
+  width: 70%;
+  height: auto;
+}
+
+.bentren {
+  width: 100%;
+  height: 205px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.thongtin-o {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 5px 0;
+  overflow: hidden;
+}
+.thongtin-o ul {
+  margin: 20px;
+  width: 100%;
+}
+.thongtin-o li {
+  font-size: 16px;
+  font-weight: normal;
+}
+.nharieng {
+  display: flex;
+}
+.tennguoinhan {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 15px;
+}
+.diachi {
+  margin-top: 8px;
+  font-size: 17px;
+  color: #414242;
+}
+
+.vanchuyen-co {
+  padding: 20px;
+  margin-bottom: 20px;
+
+  width: 100%;
+  height: 140px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.ghnhanh {
+  margin-top: 10px;
+}
+
+input[type="radio"] {
+  transform: scale(1.5);
+  margin-right: 5px;
+}
+
+.benduoi {
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+
+.benphai-co {
+  margin-left: 70px;
+  width: 38%;
+  height: auto;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.donhang {
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.sp1 {
+  display: flex;
+  margin-left: 10px;
+  align-items: center;
+}
+
+.hinhanhsp1 {
+  margin-left: 3px;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.tieude1 {
+  margin-left: 15px;
+  margin-top: 10px; 
+}
+.motas{
+  margin-left: -2px;
+  font-weight: 100;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.tieude1 .mota {
+  margin-top: 5px; 
+}
+.product-details {
+  display: flex;
+  align-items: center; 
+}
+.tamtinh-co {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.thanhtienn-co {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tien-co {
+  color: #ff6600;
+}
+.nhacnho-co {
+  font-size: 13px;
+  padding: 0 10px;
+  color: #326e51;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: auto;
+  margin: 0;
+  text-align: left;
+}
