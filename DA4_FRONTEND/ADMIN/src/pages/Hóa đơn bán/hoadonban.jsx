@@ -13,6 +13,7 @@ import {
   apiSearchHoaDonBan,
 } from "../../services/hoadonban.service";
 import ChiTietHoaDonban from "./chiTietHoaDonBan";
+import HoaDonUpdate from './HoaDonUpdate';
 
 export const formatPrice = (price) => {
   if (price == null) return "0";
@@ -29,6 +30,8 @@ const HoaDonBan = () => {
   const [status, setStatus] = useState(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [maHDB, setMaHDB] = useState("");
+  const [isUpdateDrawerOpen, setIsUpdateDrawerOpen] = useState(false);
+  const [selectedMaHDB, setSelectedMaHDB] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [tableParams, setTableParams] = useState({
@@ -103,17 +106,18 @@ const HoaDonBan = () => {
             onClick={() => {
               setIsOpenModal(true);
               setMaHDB(record.MaHDB);
-              }}  >
-          
+            }}
+          >
             <GroupOutlined />
           </Button>
           <Button
             style={{ marginLeft: "5px" }}
             onClick={() => {
-              showPromiseConfirmDelete(record.MaHDB);
+              setIsUpdateDrawerOpen(true);
+              setSelectedMaHDB(record.MaHDB);
             }}
           >
-           <EditOutlined />
+            <EditOutlined />
           </Button> 
           <Button
             style={{ marginLeft: "5px" }}
@@ -154,7 +158,6 @@ const HoaDonBan = () => {
   };
 
 
-  
   return (
     <>
       {contextHolder}
@@ -236,6 +239,12 @@ const HoaDonBan = () => {
 
             loadData={loadData}
         ></ChiTietHoaDonban>
+      <HoaDonUpdate 
+        open={isUpdateDrawerOpen}
+        onClose={() => setIsUpdateDrawerOpen(false)}
+        maHDB={selectedMaHDB}
+      />
+
     </>
   );
 };

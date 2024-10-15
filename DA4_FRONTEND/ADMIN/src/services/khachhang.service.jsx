@@ -38,10 +38,7 @@ export const apiDeletesKhachHang  = async (data) => {
 
 export const apiSaveKhachHang  = async (data) => {
   try {
-    const res = await apiClient?.post(`/khachhang/save`, data, {
-      headers: {
-        "Content-Type": "multipart/form-data",  },
-    });
+    const res = await apiClient?.post(`/khachhang/save`, data);
     return res?.data;
   } catch (error) {
     console.error("Lỗi: ", error);

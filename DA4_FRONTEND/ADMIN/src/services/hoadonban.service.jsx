@@ -36,6 +36,15 @@ export const apiDeletesHoaDonBan = async (data) => {
   }
 };
 
+export const apiSaveHoaDonBan = async (data) => {
+  try {
+    const res = await apiClient?.post(`/hoadonban/update`, data);
+    return res?.data;
+  } catch (error) {
+    console.error("Lỗi: ", error);
+  }
+};
+
 export const getThongTinHoaDon = async (id) => {
   try {
     const response = await apiClient.get(`/hoadonban/getDetail/${id}`);

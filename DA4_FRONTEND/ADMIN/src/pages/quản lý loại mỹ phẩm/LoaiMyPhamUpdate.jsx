@@ -27,7 +27,6 @@ const LoaiMyPhamUpdate = (props) => {
             AnhDaiDien: values.AnhDaiDien.file,
             MoTa: values.MoTa,
         };
-        debugger;
         const res = await apiSaveLoaiMyPham(formData);
         if (res) {
             console.log("Lưu thành công!", res);
