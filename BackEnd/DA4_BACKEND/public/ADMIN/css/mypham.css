@@ -1,0 +1,282 @@
+
+.bodybenphaimp{
+    width: 83.4%;
+    height: auto;
+}
+.phantren{
+    width: 1250px;
+    box-shadow: 0 0 20px rgba(9, 219, 72, 0.5);
+    height: 300px;
+    margin-left: 30px;
+    margin-top: 15px;
+    border-radius: 15px ;
+}
+.phantren1{
+    display: flex;
+    width: 100%;
+    height: 245px;
+}
+.nhap-thongtin{  
+    width: 30%; 
+    padding-right: 20px; 
+    margin-left: 20px;
+}
+.nhap-thongtin-sp input,
+.nhap-thongtin-sp select { 
+    margin-top: -10px;
+    width: 97%; 
+    padding: 8px 10px; 
+    outline: none; 
+    border: 1px solid #a9a9a9; 
+    border-radius: 6px;
+}
+.nhap-thongtin-sp label { 
+    color: #1b1b1b;
+}
+.cacbuttons{
+    display: flex; 
+    margin-left: 870px;
+}
+.cacbuttons button { 
+    padding: 12px 5%; 
+    margin-left: 6px; 
+    border: none; 
+    outline: none; 
+    border-radius: 4px; 
+    opacity: 0.8; 
+    cursor: pointer; 
+    transition: 0.3s;
+}
+.cacbuttons button:hover { 
+    opacity: 1;
+}
+.themmp{
+    width: 120px;
+    height: 40px;
+    background-color: #0B7043;
+    margin-right: 10px;
+    font-size: 17px;
+    border: none;
+    color: #FFFFFF;
+}
+.suamp{
+    width: 100px;
+    height: 40px;
+    background-color: #FF6600;
+    margin-right: 10px;
+    font-size: 17px;
+    border: none;
+    color: #FFFFFF;
+}
+.capnhatmp{
+    width: 140px;
+    height: 40px;
+    background-color: #01A6D6;
+    margin-right: 10px;
+    font-size: 17px;
+    border: none;
+    color: #FFFFFF;
+}
+
+.phanduoi{
+    width: 100%;
+    height: 800px;
+    margin-left: 30px;
+    margin-top: 15px;
+    border-radius: 15px ;
+    box-shadow: 0 0 30px rgba(86, 228, 129, 0.5);
+}
+
+.searchs { 
+    display: flex; 
+    justify-content: space-between; 
+    width: 98.5%;
+}
+.searchs input { 
+    margin-left: 20px;
+    width: 800px; 
+    border-radius: 15px;
+    padding: 8px;
+}
+.searchs button { 
+    width: 15%; 
+    border: none; 
+    margin-left: 10px;
+    outline: none; 
+    background-color: #FF6600; 
+    color: #fff; 
+    font-size: 1rem; 
+    border-radius: 4px;
+}
+.searchs button i { 
+    margin-right: 4px;
+}
+#tbody_mypham tr td button {
+    width: 100%;
+    border: 0;
+    background-color: #FFFFFF;
+    height: 100%;
+    
+}
+#tbody_mypham tr td button svg path:hover{
+  fill: #e00d0d;
+}
+.page {
+    display: flex;
+    align-items: center;
+}
+
+.pagination-button {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.pagination-button img {
+    width: 20px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+    height: 20px;
+}
+.phantren{
+    width: 1270px;
+    box-shadow: 0 0 20px rgba(9, 219, 72, 0.5);
+    height: 450px;
+    margin-left: 20px;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+.phannhap{
+    display: flex;
+    width: 1250px;
+    height: 400px;
+    margin-left: 30px;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+.cot1{
+    margin-top: -20px;
+    margin-left: 20px;
+}
+.form-control{
+    padding: 8px 10px;
+    margin: 10px 0 16px;
+    outline: none;
+    border: 1px solid #a9a9a9;
+    border-radius: 6px;
+    width: 250px;
+}
+.luuthongtin{
+    margin-top: 80px;
+    margin-left: -400px;
+    border-radius: 20px;
+    color: #fff; 
+    width: 100px;
+    font-size: 18px;
+    background-color: #0B7043;
+    width: 50px;
+    height: 50px;
+    border: none;
+}
+.anhmp{
+    flex: 1;
+    height: 40px;
+    background: white;
+    border-radius: 2px;
+    align-items: center;
+}
+.baoquatanh{
+    display: flex;
+    margin-top: 10px;
+    flex: 1;
+    height: 40px;
+    background: white;
+    border-radius: 2px;
+    align-items: center;
+}
+.btnanh{
+    position: absolute; 
+    right: 5px; 
+    top: 50%; 
+    transform: translateY(-50%);
+    border: none;  
+}
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.popuptitle{
+    margin-top: 50px;
+    margin-left: 480px;
+    font-size: 30px;
+    color: #e00d0d;
+    font-weight: bold;
+
+}
+.popup-content {
+    background-color: white;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Phân trang */
+.phantrang {
+    margin-top: 5px;
+}
+.hienthids {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hienthids li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.hienthids li a,
+.hienthids li span {
+    padding: 5px 10px;
+    border: 1px solid #FF6600;
+    text-decoration: none;
+    color: #181717;
+}
+
+.hienthids li.active span {
+    background-color: #FF6600;
+    color: #fff;
+    border-color: #FF6600;
+    border-radius: 20px;
+}
+
+.hienthids li.disabled span,
+.hienthids li.disabled a {
+    color: #aaa;
+    pointer-events: none;
+}
+

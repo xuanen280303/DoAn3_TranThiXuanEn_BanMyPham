@@ -1,0 +1,128 @@
+body {
+    background-size: cover;
+    background-position: center top; /* Điều này đảm bảo hình ảnh hiển thị ở giữa phía trên */
+    font-size: 16px;
+    margin: 0; /* Loại bỏ margin mặc định của body */
+    padding: 0; /* Loại bỏ padding mặc định của body */
+}
+*{
+    margin: 0px;
+}
+#wrappers{
+    width: 700px;
+    margin-left: 350px;
+    height: 580px;
+    display: flex;
+    align-items: center;
+ 
+}
+#form-login{
+    width: 500px;
+    height: 400px;
+    background: rgba(247, 250, 237, 0.8);
+    border: 1px solid rgb(43, 202, 141);
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(112, 185, 151, 0.5); /* Màu đổ bóng (ví dụ: đỏ, độ trong suốt 0.5) */
+    flex-grow: 1;
+    padding: 30px 30px 40px;
+    background-origin: 0px 0px 25px 20px rgba(255, 255, 255, 0.8);
+}
+.form-heading{
+    font-size: 25px;
+    color: #326E51;
+    text-shadow: 5px 10px 10px rgba(50, 99, 69, 0.5); 
+    text-align: center;
+    margin-bottom: 30px;
+}
+.form-group{
+    border-bottom: 1px solid black;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    display: flex;
+}
+.form-group i{
+    color: black;
+    font-size: 14px;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+.form-input{
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: black;
+    flex-grow: 1;
+}
+.form-input::placeholder{
+    color: black;
+}
+#eye i{
+    padding-right: 0;
+    cursor: pointer;
+}
+
+/* Nút login */
+.form-submit{
+    background-color: #CFEADD;
+    border: none;
+    color: black;
+    width: 100%;
+    padding: 6px 10px;
+    margin-top: 30px;
+}
+.form-submit:hover{
+    border: 1px solid rgb(11, 160, 110);
+}
+
+/* Forgot pass */
+.miss-pass{
+    margin-left: 200px;
+    text-align: end;
+    color: #277DCE;
+}
+.in4{
+    margin-left: 63px;
+    margin-top: -20px;
+    color: #326E51;
+    font-size: 18px;
+    font-weight: 800;
+}
+.thongtintk{
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.tkhoan{
+    background-color: #FF6600;
+    border: 1px solid #FFFFFF;
+    height: 40px;
+    font-size: 15px;
+    color: rgb(253, 254, 255);
+}
+.in4chitiet{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 66px;
+    font-size: 18px;
+}
+.thongtin{
+    width: 450px;
+    font-weight: bold;
+}
+.chitiet{
+    margin-top: -1px;
+    margin-left: 56px;
+    background-color: #F9FBF1;
+}
+.doimatkhau{
+    margin-top: -60px;
+}
+.change{
+    margin-left: 1350px;
+    font-size: 16px;
+    color: #faf5f0;
+    background-color: #FF6600;
+    height: 40px;
+    border: 1px solid #FFFFFF;
+}

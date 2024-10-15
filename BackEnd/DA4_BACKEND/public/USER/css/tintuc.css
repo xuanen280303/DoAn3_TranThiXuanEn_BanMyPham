@@ -1,0 +1,235 @@
+.app{
+    overflow: auto;
+    background-color: #f3f3f3;
+}
+
+*::-webkit-scrollbar{
+    display: none;
+}
+
+
+.container {
+    font-size: 15px;
+    font-style: normal;
+    margin: 0;
+    font-family: 'Open Sans',sans-serif;
+    line-height: 1.8;
+    color: #333;
+    text-align: left;
+    background-color: #f3f3f3;
+}
+
+
+/* ----------------------CONTAINER------------------------- */
+.new_title {
+    position: relative;
+    background-color: var(--white-color) !important;
+    margin-top: 16px;
+}
+
+.new_title::after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #326E51;
+}
+
+.breadcrumb {
+    position: relative;
+    list-style: none;
+    padding: 3px 12px 2px 20px;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.breadcrumb-item {
+    display: inline-block;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 0.5rem;
+    color: #fff;
+    content: " / ";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.new_title .title-h2 {
+    color: #fff;
+    line-height: 35px;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    letter-spacing: normal;
+    background: #326E51;
+    z-index: 1;
+}
+
+.new_title .title-h2 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.new_title .title-h2:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 0;
+    right: -35px;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 0 36px;
+    border-color: transparent transparent transparent #326E51;
+}
+
+.new__product {
+    margin: 8px 0 16px 0;
+    position: relative;
+}
+
+.new__product-item-wrapper {
+    position: relative;
+    display: flex;
+    overflow-x: auto;
+    transition: all 0.3 ease;
+}
+
+.new__product-item {
+    position: relative;
+    padding: 12px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background-color: #fff;
+    background-clip: content-box; 
+    background-origin: content-box;
+}
+
+.new__product-item:hover .new__product-img {
+    transform: scale(1.1);
+}
+
+
+.new__product-title::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    background: #326E51;
+    z-index: 0;
+}
+
+.new__product-img-wrapper {
+    width: 384px;
+    height: 232px;
+    overflow: hidden;
+}
+
+.new__product-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+}
+
+.product__title-name {
+    margin-top: 0.5rem;
+    font-size: 1.6rem;
+    margin: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.product__title-name a {
+    color: #7d7d7d;
+    line-height: 1.6;
+}
+
+.title-h4 {
+    padding: 12px;
+}
+
+.title-h4 a{
+    padding-bottom: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.title-h4:hover a{
+    color: var(--primary-color);
+}
+
+.calendar {
+    padding: 0 12px;
+}
+
+.calendar i {
+    padding-right: 6px;
+    color: #ea1d28;
+}
+
+.page {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    border-radius: 0.25rem;
+    padding: 8px;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    border: 1px solid #FF6600;
+    background-color: #FF6600;
+    color: #fff;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    margin-left: 2px;
+    color: #959595;
+    border: 1px solid #c5c2c2;
+    text-align: center;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+.page-link:hover {
+    z-index: 2;
+    border: 1px solid #FF6600;
+    background-color: #FF6600;
+    color: #fff;
+    text-decoration: none;
+}
+
+.noidung {
+    text-align: justify;
+    letter-spacing: -.22px;
+    margin: 2rem 0;
+    margin-top: 34px;
+    padding: 16px;
+    background-color: #fff;
+}
+
+a {
+    color: #44b362;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+
