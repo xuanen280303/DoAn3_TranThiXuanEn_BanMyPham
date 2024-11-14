@@ -85,7 +85,8 @@ Route::post('/hoadonban/create', [HoaDonBanController::class, 'create'])->name('
 Route::post('/hoadonban/update', [HoaDonBanController::class, 'update'])->name('hoadonban.update');
 //Sửa thông tin hoá đơn bán
 Route::post('/hoadonban/updateAll', [HoaDonBanController::class, 'updateAll'])->name('hoadonban.updateAll');
- 
+//Sửa trạng thái hoá đơn bán
+Route::put('/hoadonban/updateStatus', [HoaDonBanController::class, 'updateStatus'])->name('hoadonban.updateStatus');
 
 //------------------------------KHÁCH HÀNG----------------------------------
 //-----------------Hiển thị ra 1 khách hàng-------------------------
@@ -110,7 +111,7 @@ Route::get('/thongketop5', [ThongKeController::class, 'MyPhamBanChay']);
         'prefix' => 'lichsu'
     ], function ($router) {
         Route::get('get/{id}', [LichSuController::class, 'getLichSu']);
-        Route::get('search', [LichSuController::class, 'search']);
+        Route::post('search', [LichSuController::class, 'search']);
         Route::delete('delete/{id}', [LichSuController::class, 'delete']);
     });
 });

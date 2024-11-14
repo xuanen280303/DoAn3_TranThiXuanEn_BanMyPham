@@ -15,7 +15,9 @@ function printInvoice() {
 
 function ChiTietHoaDonban(props) {
   const [inforOrder, setInforOrder] = useState(null);
+  
   const loadData = async (id) => {
+    setInforOrder(null)
     const res = await getThongTinHoaDon(id);
     if (res.status === 200) {
       setInforOrder(res);

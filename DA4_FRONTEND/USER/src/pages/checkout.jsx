@@ -89,10 +89,10 @@ function Checkout() {
     };
 
     try {
-    debugger
       const response = await setHoadonban(DuLieuTam);
       if (response.status === 200) {
         navigate(`/thanhtoanqr/${response?.hoaDonBan.MaHDB}`);
+        localStorage.removeItem('cart');
       } else {
         console.error("Lỗi khi tạo hóa đơn bán:", response.message);
       }

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Breadcrumb, Button, Flex, Table, Input, Modal, message, Select, Tag } from "antd";
+import { Breadcrumb, Button, Flex, Table, Input, Modal, message, Select, Tag,Tooltip  } from "antd";
 import {
   ExclamationCircleFilled,
   DeleteOutlined,
   GroupOutlined,
   EditOutlined,
-  
+  CheckOutlined,
 } from "@ant-design/icons";
 import {
   apiDeleteHoaDonBan,
   apiDeletesHoaDonBan,
-  apiSearchHoaDonBan,
+  apiSearchHoaDonBan,setStatusHoaDonBan,
 } from "../../services/hoadonban.service";
 import ChiTietHoaDonban from "./chiTietHoaDonBan";
 import HoaDonUpdate from './HoaDonUpdate';
@@ -27,7 +27,7 @@ const HoaDonBan = () => {
   const { confirm } = Modal;
   const { Search } = Input;
   const [valueSearch, setValueSearch] = useState(null);
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState("Chờ xác nhận");
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [maHDB, setMaHDB] = useState("");
   const [isUpdateDrawerOpen, setIsUpdateDrawerOpen] = useState(false);
@@ -66,6 +66,33 @@ const HoaDonBan = () => {
       console.error("Lỗi rồi:", results?.message);
     }
   };
+  const handleUpdateStatus = (currentStatus) => {
+    switch (currentStatus) {
+      case "Chờ xác nhận":
+        return "Đã xác nhận";
+      case "Đã xác nhận":
+        return "Đang giao hàng";
+      case "Đang giao hàng":
+        return "Hoàn thành";
+      default:
+        return currentStatus;
+    }
+  };
+  
+  const handleStatus = async (id) => {
+    console.log(status)
+    const newStatus = handleUpdateStatus(status); 
+    const res = await setStatusHoaDonBan({ MaHDB: id, TrangThai: newStatus });
+    if (res.status === 200) {
+      messageApi.open({
+        type: 'success',
+        content: 'Cập nhật trạng thái thành công',
+      });
+      loadData(status);
+    }
+  };
+  
+
 
   const handleTag = (value) => {
     switch (value) {
@@ -90,7 +117,7 @@ const HoaDonBan = () => {
     { title: "Mã KH", dataIndex: "MaKH" },
     { title: "Ngày tạo", dataIndex: "NgayTao" },
     { title: "Trạng thái", dataIndex: "TrangThai",
-      render: (_, record) => <Tag style={{fontSize:"14px"}} color={handleTag(record.TrangThai)}>{record.TrangThai}</Tag>,
+      render: (_, record) =>  <Tag color={handleTag(record.TrangThai)}>{record.TrangThai}</Tag>,
      },
     { title: "Thanh toán", dataIndex: "TrangThaiThanhToan" },
     { title: "Tổng tiền", dataIndex: "TongTien",
@@ -101,15 +128,32 @@ const HoaDonBan = () => {
       width: "120px",
       render: (_, record) => (
         <Flex justify="center">
+          {(status === "Chờ xác nhận" || status === "Đã xác nhận"|| status === "Đang giao hàng") && (
+          <Tooltip title="Cập nhật trạng thái">
           <Button
             style={{ marginLeft: "5px" }}
             onClick={() => {
-              setIsOpenModal(true);
-              setMaHDB(record.MaHDB);
+              handleStatus(record.MaHDB);
             }}
           >
-            <GroupOutlined />
+            <CheckOutlined />
           </Button>
+          </Tooltip>
+)}
+      
+          <Tooltip title="Chi tiết hoá đơn" >
+  <Button
+    style={{ marginLeft: "5px" }}
+    onClick={() => {
+      setIsOpenModal(true);
+      setMaHDB(record.MaHDB);
+    }}
+  >
+    <GroupOutlined />
+  </Button>
+
+          </Tooltip>
+          <Tooltip title="Cập nhật hoá đơn">
           <Button
             style={{ marginLeft: "5px" }}
             onClick={() => {
@@ -119,6 +163,10 @@ const HoaDonBan = () => {
           >
             <EditOutlined />
           </Button> 
+          </Tooltip>
+          {(status === "Chờ xác nhận" || status === "Đã xác nhận"|| status === "Đang giao hàng") && (
+
+          <Tooltip title="Huỷ đơn hàng">
           <Button
             style={{ marginLeft: "5px" }}
             onClick={() => {
@@ -126,7 +174,10 @@ const HoaDonBan = () => {
             }}
           >
             <DeleteOutlined />
+        
           </Button>
+          </Tooltip>
+          )}
         </Flex>
       ),
     },
@@ -145,11 +196,14 @@ const HoaDonBan = () => {
     confirm({
       title: "Xoá?",
       icon: <ExclamationCircleFilled />,
-      content: "Bạn có chắc muốn xoá thông tin hóa đơn bán đã chọn ?",
+      content: "Bạn có chắc muốn huỷ hóa đơn bán đã chọn ?",
       onOk: async () => {
         const res = await apiDeleteHoaDonBan(maHDB);
         if (res?.status_code === 200) {
-          console.log("xoá thành công!");
+          messageApi.open({
+            type: 'success',
+            content: 'Huỷ hoá đơn thành công',
+          });
         }
         loadData();
       },

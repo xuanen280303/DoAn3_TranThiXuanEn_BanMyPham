@@ -54,3 +54,13 @@ export const getThongTinHoaDon = async (id) => {
     throw error;
   }
 };
+//
+export const setStatusHoaDonBan = async (HDBData) => {
+  try {
+    const response = await apiClient.put("/hoadonban/updateStatus", HDBData);
+    return response.data;
+  } catch (error) {
+    console.error("Lỗi khi tạo hóa đơn bán:", error);
+    throw error;
+  }
+};

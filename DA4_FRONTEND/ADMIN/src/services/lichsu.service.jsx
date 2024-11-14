@@ -11,14 +11,13 @@ export const apiGetLichSu = async (id) => {
 
 export const apiSearchLichSu  = async (data) => {
   try {
-    debugger
-    const res = await apiClient?.get(`/lichsu/search`, data);
-    debugger
-    return res?.data;
+    const res = await apiClient?.post(`/lichsu/search`, data);
+    return res.data;
   } catch (error) {
     console.error("Lỗi: ", error);
   }
 };
+
 
 export const apiDeleteLichSu = async (id) => {
   try {

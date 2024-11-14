@@ -42,6 +42,7 @@ const HoaDonBan = (props) => {
     };
 
     const loadDataUpdate = async (id) => {
+        form.resetFields(); 
         let res = await apiGetHoaDonBan(id);
         if (res) {
         form.setFieldsValue(res.data);
@@ -49,7 +50,6 @@ const HoaDonBan = (props) => {
     };
 
     useEffect(() => {
-        form.resetFields();
         if (props.MaHDB) {
         loadDataUpdate(props.MaHDB);
         }
@@ -57,7 +57,6 @@ const HoaDonBan = (props) => {
 
     const handleCancelModal = () => {
         props.cancelModal();
-        form.resetFields(); 
     };
 
   return (

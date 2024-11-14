@@ -39,15 +39,14 @@ const KhachHang = (props) => {
     };
 
     const loadDataUpdate = async (id) => {
+      form.resetFields();
         let res = await apiGetKhachHang(id);
-        console.log(res);
         if (res) {
         form.setFieldsValue(res.data);
         }
     };
 
     useEffect(() => {
-        form.resetFields();
         if (props.maKH) {
         loadDataUpdate(props.maKH);
         }
@@ -55,7 +54,6 @@ const KhachHang = (props) => {
 
     const handleCancelModal = () => {
         props.cancelModal();
-        form.resetFields(); 
     };
 
   return (

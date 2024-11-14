@@ -328,5 +328,42 @@ class HoaDonBancontroller extends Controller
             ]);
         }
     }
+
+    public function updateStatus(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $hdb = HoaDonBan::find($request->MaHDB);
+            if (!$hdb) {
+                throw new \Exception("Hóa đơn bán không tồn tại.");
+            }
+            if($request->TrangThai == $hdb->TrangThai){
+                throw new \Exception("Trạng thái hóa đơn bán không thay đổi.");
+            }
+            $tt = $hdb->TrangThai;
+            $hdb->TrangThai = $request->TrangThai;
+            $hdb->save();
+            $ls = new LichSu();
+            $ls->MaHDB = $hdb->MaHDB;
+            $ls->TrangThai = $request->TrangThai;
+            $ls->NgayTao = now();
+            $ls->save();
+            
+            DB::commit();
+
+            return response()->json([
+                'hoaDonBan' => $hdb,
+                'status' => 200,
+                'message' => 'Cập nhật hóa đơn bán thành công!'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Lỗi trong quá trình cập nhật hóa đơn bán: ' . $e->getMessage(),
+                'status' => 500
+            ]);
+        }
+    }
+
    
 }

@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\HoaDonBan;
+use App\Models\ChiTietHoaDonBan;
+use App\Models\KhachHang;
 use App\Models\LichSu;
+use App\Models\MyPham;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+
 
 class LichSuController extends Controller
 {
@@ -28,9 +33,9 @@ class LichSuController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
-        $page = $request->input('page');
-        $totalPage = $request->input('pageSize');
+        $search =  $request->search;
+        $page = $request->page;
+        $totalPage =$request->pageSize;
         $query = LichSu::query();
         if ($search) {
             $query->where(function ($query) use ($search) {
@@ -52,6 +57,7 @@ class LichSuController extends Controller
             ]);
         }
     }
+    
     public function delete($id)
     {
         $db = LichSu::where('MaLS', $id)->first();
