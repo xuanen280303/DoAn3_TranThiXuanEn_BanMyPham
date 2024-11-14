@@ -10,11 +10,9 @@ import Search from 'antd/es/transfer/search';
 const HoaDonUpdate = ({ open, onClose, maHDB }) => {
   const [form] = Form.useForm();
   const [lichSu, setlichSu] = useState([]);
-  const [isKhachHangModalOpen, setIsKhachHangModalOpen] = useState(false);
-  const [isHoaDonBanModalOpen, setIsHoaDonBanModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [inforOrder, setInforOrder] = useState(null);
-  const [prevMaHDB, setPrevMaHDB] = useState(null);
 
   const loadData = async (id) => {
     const [hoaDonBan, lichSu] = await Promise.all([getThongTinHoaDon(id), apiSearchLichSu({page: 1, pageSize: 30, search: maHDB })]);
@@ -25,15 +23,15 @@ const HoaDonUpdate = ({ open, onClose, maHDB }) => {
     if (lichSu.status === 200) {
       setlichSu(lichSu.data.data);
     }
+    setLoading(false);
   };
   
   useEffect(() => {
-    if (maHDB !== null && maHDB !== prevMaHDB) {
-      
+    if (maHDB !== null) {
+      setLoading(true);
       loadData(maHDB);
-      setPrevMaHDB(maHDB);
     }
-  }, [maHDB, prevMaHDB]);
+  }, [maHDB,open]);
   
   const { khachhang, hoaDonBan, chitiethdb } = inforOrder || {khachhang: {}, hoaDonBan: {}, chitiethdb: []};
   const handleTag = (value) => {
@@ -60,7 +58,7 @@ const HoaDonUpdate = ({ open, onClose, maHDB }) => {
         { title: 'Trạng thái thanh toán', dataIndex: 'TrangThaiThanhToan', key: 'TrangThaiThanhToan' },
         { title: 'Tổng tiền', dataIndex: 'TongTien', key: 'TongTien' },
         { title: 'Ngày tạo', dataIndex: 'NgayTao', key: 'NgayTao',
-            render: (text) => dayjs(text).format('DD/MM/YYYY lúc HH:mm')
+            render: (text) => dayjs(text+"Z").format('DD/MM/YYYY lúc HH:mm')
         },
       ];
     
@@ -85,28 +83,13 @@ const HoaDonUpdate = ({ open, onClose, maHDB }) => {
           render: (_, record) => <Tag style={{fontSize:"14px"}} color={handleTag(record.TrangThai)}>{record.TrangThai}</Tag>,
       },
       { title: 'Ngày tạo', dataIndex: 'NgayTao', key: 'NgayTao',
-        render: (text) => dayjs(text).format('DD/MM/YYYY lúc HH:mm')
+        render: (text) => dayjs(text+"Z").format('DD/MM/YYYY lúc HH:mm')
     },
       ];
 
-  const handleOpenKhachHangModal = () => {
-    setIsKhachHangModalOpen(true);
-  };
-
-  const handleCloseKhachHangModal = () => {
-    setIsKhachHangModalOpen(false);
-  };
-
-  const handleOpenHoaDonBanModal = () => {
-    setIsHoaDonBanModalOpen(true);
-  };
-
-  const handleCloseHoaDonBanModal = () => {
-    setIsHoaDonBanModalOpen(false);
-  };
   return (
     <Drawer
-      title="Cập nhật Hóa đơn bán"
+      title="CHI TIẾT ĐƠN HÀNG"
       width={800}
       onClose={onClose}
       open={open}
@@ -115,39 +98,21 @@ const HoaDonUpdate = ({ open, onClose, maHDB }) => {
     
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h3>Hóa đơn bán</h3>
-        <Button type="primary" onClick={handleOpenHoaDonBanModal}>Sửa HĐB</Button>
       </div>
-      <Table dataSource={[hoaDonBan]} columns={hoaDonBanColumns} pagination={false} />
+      <Table dataSource={[hoaDonBan]} columns={hoaDonBanColumns} pagination={false} loading={loading} />
       
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
         <h3>Khách hàng</h3>
-        <Button type="primary" onClick={handleOpenKhachHangModal}>Sửa khách hàng</Button>
       </div>
-      <Table dataSource={[khachhang]} columns={khachHangColumns} pagination={false} />
+      <Table dataSource={[khachhang]} columns={khachHangColumns} pagination={false} loading={loading} />
       
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
-      <h3>Chi tiết hóa đơn bán</h3>
-        <Button type="primary">Sửa chi tiết HĐB</Button>
+      <h3>Sản phẩm đã đặt</h3>
       </div>
-      <Table dataSource={chitiethdb} columns={chiTietHDBColumns}  />
-      
+      <Table dataSource={chitiethdb} columns={chiTietHDBColumns} pagination={false} loading={loading} />
       <h3>Lịch sử trạng thái</h3>
-      <Table dataSource={lichSu} columns={lichSuColumns} pagination={false} />
-      
+      <Table dataSource={lichSu} columns={lichSuColumns} pagination={false} loading={loading} />
 
-      <KhachHang
-        open={isKhachHangModalOpen}
-        cancelModal={handleCloseKhachHangModal}
-        maKH={khachhang?.MaKH}
-        loadData={(id) => loadData(maHDB)}
-      />
-
-      <HoaDonBan
-      open={isHoaDonBanModalOpen}
-      cancelModal={handleCloseHoaDonBanModal}
-      MaHDB={hoaDonBan?.MaHDB}
-      loadData={(id) => loadData(maHDB)}
-    />
 
 
     </Drawer>

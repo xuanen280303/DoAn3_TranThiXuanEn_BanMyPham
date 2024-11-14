@@ -1,10 +1,13 @@
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { apiLogin } from "../services/login.service";
+import { useState } from "react";
 
 const Login = function () {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const onFinish = async (values) => {
+    setLoading(true);
     try {
       let data = await apiLogin(values);
       if (data) {
@@ -47,7 +50,7 @@ const Login = function () {
           <Input.Password />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit" style={{ marginLeft: "60px", width:"150px", height:"40px", fontSize:"20px", marginTop: "20px" }}> 
+          <Button type="primary" htmlType="submit" style={{ marginLeft: "60px", width:"150px", height:"40px", fontSize:"20px", marginTop: "20px" }} loading={loading}> 
             Đăng nhập
           </Button>
         </Form.Item>

@@ -1,8 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getThongTinHoaDon } from "../../services/hoadonban.service";
+import { getThongTinHoaDon } from "../../../services/hoadonban.service";
 import { Button, Modal } from "antd";
+import styles from './chiTietHoaDonBan.module.css';
+import dayjs from "dayjs";
 
 export const formatPrice = (price) => {
   if (price == null) return "0";
@@ -52,39 +54,39 @@ function ChiTietHoaDonban(props) {
       ]}
     >
       <div style={{overflow: "hidden", width: "100%"}}>
-        <div className="shop">
-          <div className="shop1">
+        <div className={styles.shop}>
+          <div className={styles.shop1}>
             <img src="../Images/logo1.jpg" alt="Logo" />
             <h1>HASAKI VIỆT NAM</h1>
           </div>
-          <div className="le">
+          <div className={styles.le}>
             Địa chỉ: Số 1 Quan Nhân, Thanh Xuân, Hà Nội
           </div>
-          <div className="le">
+          <div className={styles.le}>
             Số điện thoại: 0987.233.625 - 035.831.2793
           </div>  
         </div>
-        <section className="containers">
+        <section className={styles.containers}>
           <h1>HÓA ĐƠN BÁN HÀNG</h1>
           <p>Mã số thuế: 123456</p>
-          <p>Thời gian: {hoaDonBan?.NgayTao}</p>
+          <p>Thời gian: {dayjs(hoaDonBan?.NgayTao+"Z").format('DD/MM/YYYY lúc HH:mm')}</p>
         </section>
         <div style={{textAlign: 'right', marginBottom: '20px'}}>
 
         </div>
-        <div className="le dam">
+        <div className={`${styles.le} ${styles.dam}`}>
           Họ tên khách hàng: {khachhang?.HoTenKH}
         </div>
-        <div className="le">Số điện thoại: {khachhang?.SDTKH}</div>
-        <div className="le">Địa chỉ khách hàng: {khachhang?.DiaChiKH}</div>
-        <div className="le">Mã nhân viên bán hàng: 1</div>
-        <div className="kethop">
+        <div className={styles.le}>Số điện thoại: {khachhang?.SDTKH}</div>
+        <div className={styles.le}>Địa chỉ khách hàng: {khachhang?.DiaChiKH}</div>
+        <div className={styles.le}>Mã nhân viên bán hàng: 1</div>
+        <div className={styles.kethop}>
           <p>Hình thức thanh toán: Chuyển khoản</p>
           <p>Số tài khoản: 6888828032003</p>
         </div>
-        <div className="le">Ghi chú:</div>
+        <div className={styles.le}>Ghi chú:</div>
 
-        <table>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>STT</th>
@@ -105,19 +107,19 @@ function ChiTietHoaDonban(props) {
               </tr>
             ))}
             <tr>
-              <td colSpan="4" className="dam">
+              <td colSpan="4" className={styles.dam}>
                 Tổng tiền hóa đơn bán
               </td>
-              <td className="dam">{formatPrice(hoaDonBan?.TongTien)} VNĐ</td>
+              <td className={styles.dam}>{formatPrice(hoaDonBan?.TongTien)} VNĐ</td>
             </tr>
           </tbody>
         </table>
         <div style={{textAlign: 'right', marginTop: '20px', fontSize: '20px'}}>
-          <p className="dam" style={{color: 'red', textDecoration: 'underline dotted'}}>
+          <p className={styles.dam} style={{color: 'red', textDecoration: 'underline dotted'}}>
             Tổng tiền: {formatPrice(hoaDonBan?.TongTien)} VNĐ
           </p>
         </div>
-        <div style={{display: 'flex', justifyContent: 'space-around', marginTop: '50px'}}>
+        <div className={styles.chuKy}>
           <div>
             <h5>KHÁCH HÀNG</h5>
             <p>(Ký tên)</p>

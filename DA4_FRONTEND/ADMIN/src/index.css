@@ -67,3 +67,8 @@
 .ant-menu-item-selected{
   background: rgb(75, 141, 122) !important;
 }
+
+table{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

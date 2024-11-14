@@ -31,7 +31,6 @@ const KhachHang = (props) => {
             console.log("Lưu thành công!", res);
             await props.loadData(props.maKH);  // Thay đổi ở đây
             props.cancelModal();
-            form.resetFields();
         }
         } catch (error) {
         console.error("Lỗi lưu thông tin khách hàng:", error);
