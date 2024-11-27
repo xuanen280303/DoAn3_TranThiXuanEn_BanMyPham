@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { apiSignup } from "../services/signup.service";
 import { message } from "antd";
+import { apiSignup } from "../services/auth.service";
 
 function Signup() {
   const [name, setName] = useState("");

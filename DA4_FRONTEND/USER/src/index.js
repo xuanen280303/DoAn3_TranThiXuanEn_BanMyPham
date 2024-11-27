@@ -4,7 +4,8 @@ import { RecoilRoot } from "recoil";
 import { router } from "./route";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
-
+// import "./input.css";
+// import "./output.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

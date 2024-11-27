@@ -14,6 +14,7 @@ import InHDB from "./pages/inhdb";
 import ThanhtoanQR from "./pages/thanhtoanqr";
 import AppLayout from "./shared/AppLayout";
 import ScrollToTop from "./shared/ScrollToTop";
+import PurchaseHistory from "./pages/purchaseHistory";
 export const router = createBrowserRouter([
   {
     path: "",
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/purchaseHistory",
+        element: <PurchaseHistory />,
       },
     ]
   },

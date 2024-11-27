@@ -89,7 +89,7 @@ function InHDB() {
       </div>
       <div className="le">Ghi chú:</div>
 
-      <table style={{ marginTop: "30px", fontSize: "16px" }}>
+      <table style={{marginLeft: "290px", marginTop: "30px", fontSize: "16px" }}>
         <thead>
           <tr style={{ background: "#326E51", color: "#fff" }}>
             <th>STT</th>

@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {
-  Breadcrumb,
-  Button,
-  Flex,
-  Table,
-  Input,
-  Modal,
-  message,
-  Select,
-  Tag,
-  Tooltip,
+  Breadcrumb, Button, Flex, Table, Input, Modal, message, Select, Tag, Tooltip,
 } from "antd";
 import {
-  ExclamationCircleFilled,
-  DeleteOutlined,
-  GroupOutlined,
-  EditOutlined,
-  CheckOutlined,
+  ExclamationCircleFilled, DeleteOutlined, GroupOutlined, EditOutlined, CheckOutlined,
 } from "@ant-design/icons";
 import {
-  apiDeleteHoaDonBan,
-  apiDeletesHoaDonBan,
-  apiSearchHoaDonBan,
-  setStatusHoaDonBan,
+  apiDeleteHoaDonBan, apiDeletesHoaDonBan, apiSearchHoaDonBan, setStatusHoaDonBan,
 } from "../../services/hoadonban.service";
 import ChiTietHoaDonban from "./ChiTietHD/chiTietHoaDonBan";
 import HoaDonUpdate from "./HoaDonUpdate";
@@ -39,7 +23,7 @@ const HoaDonBan = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { confirm } = Modal;
   const [isKhachHangModalOpen, setIsKhachHangModalOpen] = useState(false);
-  const { Search } = Input;
+  const { Search } = Input; 
   const [valueSearch, setValueSearch] = useState(null);
   const [status, setStatus] = useState("Chờ xác nhận");
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -89,6 +73,8 @@ const HoaDonBan = () => {
       console.error("Lỗi rồi:", results?.message);
     }
   };
+
+
   const handleUpdateStatus = (currentStatus) => {
     switch (currentStatus) {
       case "Chờ xác nhận":
@@ -231,13 +217,13 @@ const HoaDonBan = () => {
     confirm({
       title: "Xoá?",
       icon: <ExclamationCircleFilled />,
-      content: "Bạn có chắc muốn huỷ hóa đơn bán đã chọn ?",
+      content: "Bạn có chắc muốn huỷ hóa đơn bán đã chọn?",
       onOk: async () => {
         const res = await apiDeleteHoaDonBan(maHDB);
         if (res?.status_code === 200) {
           messageApi.open({
             type: "success",
-            content: "Huỷ hoá đơn thành công",
+            content: "Huỷ hoá đơn thành công!",
           });
         }
         loadData();
@@ -272,6 +258,7 @@ const HoaDonBan = () => {
               marginTop: "10px",
             }}
           >
+            
             <Search
               placeholder="Nhập mã hóa đơn bán cần tìm kiếm..."
               allowClear

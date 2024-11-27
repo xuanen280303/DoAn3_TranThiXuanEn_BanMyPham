@@ -1,3 +1,4 @@
+
 body {
   background-color: #f7f7f7;
 }
@@ -187,4 +188,39 @@ button {
 
 .sluong button:hover {
   background-color: #e0e0e0;
+}
+
+.headerdangnhap .submenu {
+  display: none;
+  background-color: #0F9A6B;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  width: 180px;
+  /* padding: 8px 0; */
+  z-index: 999;
+}
+
+.headerdangnhap .submenu li {
+  display: block;
+  padding: 8px 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.headerdangnhap .submenu li a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.headerdangnhap .submenu li:hover {
+  background-color: #FF6600;
+}
+
+.headerdangnhap {
+  position: relative;
+}
+
+.headerdangnhap:hover .submenu {
+  display: block;
 }

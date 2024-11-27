@@ -22,3 +22,11 @@ export const getThongTinHoaDon = async (id) => {
   }
 };
 
+export const apiSearchHoaDonBan = async (data) => {
+  try {
+    const res = await apiClient?.post(`/hoadonban/search`, data);
+    return res?.data;
+  } catch (error) {
+    console.error("Lỗi: ", error);
+  }
+};

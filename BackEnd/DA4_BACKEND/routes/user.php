@@ -52,5 +52,6 @@ Route::post('/cart/{id}', [Cartcontroller::class, 'getCart'])->name('getcart.car
 //-----------------------------------In hóa đơn bán------------------------------------------
 Route::post('/xuathdb', [HoaDonBancontroller::class, 'xuathdb'])->name('xuathdb');
 Route::get('/getthongtinhoadon/{id?}', [HoaDonBancontroller::class, 'getThongTinHoaDon'])->name('getThongTinHoaDon');
+Route::post('/hoadonban/search', [HoaDonBancontroller::class, 'search'])->name('hoadonban.search');
 
 

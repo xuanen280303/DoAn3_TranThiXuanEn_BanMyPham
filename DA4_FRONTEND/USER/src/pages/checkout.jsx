@@ -84,6 +84,7 @@ function Checkout() {
       DiaChiKH: khachhang.DiaChiKH,
       TrangThaiThanhToan: khachhang.TrangThaiThanhToan,
       TongTien: tongTien,
+      userId: JSON.parse(localStorage.getItem("account")).id,
       MaMP: cart.map((item) => item.MaMP),
       SLTon: cart.map((item) => item.SoLuong),
     };

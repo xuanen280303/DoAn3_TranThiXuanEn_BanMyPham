@@ -18,7 +18,6 @@ export const apiSearchLichSu  = async (data) => {
   }
 };
 
-
 export const apiDeleteLichSu = async (id) => {
   try {
     const res = await apiClient?.delete(`/lichsu/delete/${id}`);

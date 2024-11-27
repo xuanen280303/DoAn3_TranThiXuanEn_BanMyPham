@@ -78,7 +78,40 @@ class HoaDonBanController extends Controller
             }
     
     }
-    
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $userId = $request->input('userId');
+        $status = $request->input('status');
+        $page = $request->input('page');
+        $totalPage = $request->input('pageSize');
+        $query = HoaDonBan::query();
+        if ($search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('MaHDB', 'like', '%' . $search . '%');                    
+                });
+        }
+        if ($status) {
+            $query->where('TrangThai', $status);
+        }
+        if ($userId) {
+            $query->where('userId', $userId);
+        }
+        $db = $query->paginate($totalPage ?? ($page ?? 1));
+        if($db){
+            return response()->json([
+                'data'=>$db,
+                'status'=> 200,
+                'message'=>"Hiển thị danh sách hóa đơn bán thành công!"
+            ]);
+        }else{
+            return response()->json([
+                'data'=>null,
+                'status'=> 404,
+                'message'=>"Lỗi!"
+            ]);
+        }
+    }
     public function getThongTinHoaDon($MaHDB)
     {
         try {

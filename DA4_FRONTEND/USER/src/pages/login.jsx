@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { apiLogin } from "../services/auth.service";
+import { apiLogin, apiProfile } from "../services/auth.service";
 import { message } from "antd";
 
 function Login() {
@@ -14,6 +14,9 @@ function Login() {
     e.preventDefault();
     try {
       const data = await apiLogin(name, password);
+      localStorage.setItem("user", JSON.stringify(data));
+      const account = await apiProfile();
+      localStorage.setItem("account", JSON.stringify(account));
       navigate("/");
     } catch (error) {
       messageApi.error(error.message || "Đã có lỗi xảy ra! Vui lòng thử lại!");

@@ -1,8 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { getTongSoLuong } from "../services/cart.service";
 
 function Header() {
+  const account = JSON.parse(localStorage.getItem("user"));
+  const accountProfile = JSON.parse(localStorage.getItem("account"));
+  const router = useNavigate();
+  const logOut = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("account");
+    router("/");
+  };
+
   return (
     <>
       <div className="app">
@@ -13,10 +22,12 @@ function Header() {
           <nav className="headerdangnhap">
             <ul style={{ marginLeft: "1100px" }}>
               <li className="headerdangnhap">
-                <Link to="/login" className="dangnhap">
-                  <i className="fa-regular fa-circle-user"></i>
-                  Đăng nhập
-                </Link>
+              {!account?.access_token && (
+                  <Link to="/login" className="dangnhap">
+                    <i className="fa-regular fa-circle-user"></i>
+                    Đăng nhập
+                  </Link>
+              )}
               </li>
               <li className="headerdangnhap">
                 <a href="support.html" className="dangnhap">
@@ -24,16 +35,34 @@ function Header() {
                   Trợ giúp
                 </a>
               </li>
-              <li className="headerdangnhap">
-                <img
-                  src="../Images/Avt.jpg"
-                  className="header-img"
-                  style={{ marginTop: "3px" }}
-                />
-                <span className="dangnhap" style={{ marginTop: "7px" }}>
-                  Trần Thị Xuân Én
-                </span>
-              </li>
+              {account?.access_token && (
+                <>
+                  <li className="headerdangnhap" style={{ position: "relative" }}>
+                    <img
+                      src="../Images/Avt.jpg"
+                      className="header-img"
+                      style={{ marginTop: "3px" }}
+                      alt="Avatar"
+                    />
+                    <span className="dangnhap" style={{ marginTop: "7px", marginLeft: "5px" }}>
+                      {accountProfile?.name}
+                    </span>
+                    <ul className="submenu" style={{ position: "absolute", top: "100%", left: "0" }}>
+                      <li>
+                        <a >Thông tin cá nhân</a>
+                      </li>
+                      <li>
+                        <Link to="/purchaseHistory">Đơn hàng</Link>
+                      </li>
+                      <li>
+                        <a onClick={logOut}>Đăng xuất</a>
+                      </li>
+                    </ul>
+                  </li>
+                </>
+                
+              )}
+
             </ul>
           </nav>
 

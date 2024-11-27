@@ -7,6 +7,11 @@ import HoaDonBan from './Update/HoaDonBan';
 import { apiSearchLichSu } from '../../services/lichsu.service';
 import Search from 'antd/es/transfer/search';
 
+export const formatPrice = (price) => {
+  if (price == null) return "0";
+  return parseInt(price).toLocaleString("vi-VN");
+};
+
 const HoaDonUpdate = ({ open, onClose, maHDB }) => {
   const [form] = Form.useForm();
   const [lichSu, setlichSu] = useState([]);
@@ -66,18 +71,26 @@ const HoaDonUpdate = ({ open, onClose, maHDB }) => {
         { title: 'Mã KH', dataIndex: 'MaKH', key: 'MaKH', width: '80px'},
         { title: 'Tên KH', dataIndex: 'HoTenKH', key: 'HoTenKH', width: '200px' },
         { title: 'Địa chỉ', dataIndex: 'DiaChiKH', key: 'DiaChiKH' },
-        { title: 'SĐT', dataIndex: 'SDTKH', key: 'SDTKH' , width: '100px'},
-       
+        { title: 'SĐT', dataIndex: 'SDTKH', key: 'SDTKH' , width: '100px'}, 
       ];
-    
+
       const chiTietHDBColumns = [
         { title: 'Mã MP', dataIndex: 'MaMP', key: 'MaMP' ,width: '80px'},
-        { title: 'Tên mặt hàng', dataIndex: 'TenMP', key: 'TenMP' },
-        { title: 'Đơn giá', dataIndex: 'GiaTien', key: 'GiaTien' },
+        { title: 'Tên mỹ phẩm', dataIndex: 'TenMP', key: 'TenMP' },
+        {
+          title: "Đơn giá", dataIndex: "GiaTien",
+          render: (_, record) => <p>{formatPrice(record.GiaTien)}</p>,
+        },
+        // { title: 'Đơn giá', dataIndex: 'GiaTien', key: 'GiaTien' },
         { title: 'Số lượng', dataIndex: 'SLBan', key: 'SLBan' },
-        { title: 'Tổng tiền', dataIndex: 'TongTien', key: 'TongTien' },
+        {
+          title: "Tổng tiền", dataIndex: "TongTien",
+          render: (_, record) => <p>{formatPrice(record.TongTien)}</p>,
+        },
+        // { title: 'Tổng tiền', dataIndex: 'TongTien', key: 'TongTien' },
         // Thêm các cột khác cho chiTietHDB
       ];
+      
       const lichSuColumns = [
         { title: "Trạng thái", dataIndex: "TrangThai",key: 'TrangThai',
           render: (_, record) => <Tag style={{fontSize:"14px"}} color={handleTag(record.TrangThai)}>{record.TrangThai}</Tag>,
@@ -95,7 +108,6 @@ const HoaDonUpdate = ({ open, onClose, maHDB }) => {
       open={open}
       bodyStyle={{ paddingBottom: 80 }}
     >
-    
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h3>Hóa đơn bán</h3>
       </div>
@@ -107,13 +119,12 @@ const HoaDonUpdate = ({ open, onClose, maHDB }) => {
       <Table dataSource={[khachhang]} columns={khachHangColumns} pagination={false} loading={loading} />
       
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
-      <h3>Sản phẩm đã đặt</h3>
+      <h3>Mỹ phẩm đã đặt</h3>
       </div>
       <Table dataSource={chitiethdb} columns={chiTietHDBColumns} pagination={false} loading={loading} />
+
       <h3>Lịch sử trạng thái</h3>
       <Table dataSource={lichSu} columns={lichSuColumns} pagination={false} loading={loading} />
-
-
 
     </Drawer>
   );

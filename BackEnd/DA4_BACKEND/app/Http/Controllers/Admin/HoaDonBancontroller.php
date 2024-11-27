@@ -119,7 +119,6 @@ class HoaDonBancontroller extends Controller
         }
     }
 
-
     public function delete($id)
     {
         // Tìm hóa đơn bán với MaHDB (mã hóa đơn bán)
@@ -225,7 +224,6 @@ class HoaDonBancontroller extends Controller
             if (!$hdb) {
                 throw new \Exception("Hóa đơn bán không tồn tại.");
             }
-
 
             $kh = KhachHang::find($hdb->MaKH);
             $kh->HoTenKH = $request->HoTenKH;
@@ -363,7 +361,5 @@ class HoaDonBancontroller extends Controller
                 'status' => 500
             ]);
         }
-    }
-
-   
+    }   
 }
