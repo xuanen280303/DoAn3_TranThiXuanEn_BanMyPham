@@ -11,10 +11,12 @@ import Support from "./pages/support";
 import Systemshop from "./pages/systemshop";
 import React from "react";
 import InHDB from "./pages/inhdb";
-import ThanhtoanQR from "./pages/thanhtoanqr";
+import ThanhtoanQR from "./pages/success";
 import AppLayout from "./shared/AppLayout";
 import ScrollToTop from "./shared/ScrollToTop";
 import PurchaseHistory from "./pages/purchaseHistory";
+import DetailPurchase from "./pages/DetailPurchase";
+import Success from "./pages/success";
 export const router = createBrowserRouter([
   {
     path: "",
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
         path: "/purchaseHistory",
         element: <PurchaseHistory />,
       },
+      {
+        path: "/purchase-detail/:id",
+        element: <DetailPurchase />,
+      },
     ]
   },
   {
@@ -63,8 +69,8 @@ export const router = createBrowserRouter([
     path: "/checkout",
     element: <Checkout />,
   },      {
-    path: "/thanhtoanqr/:id",
-    element: <ThanhtoanQR />,
+    path: "/success/:id",
+    element: <Success />,
   }, {
     path: "/support",
     element: <Support />,

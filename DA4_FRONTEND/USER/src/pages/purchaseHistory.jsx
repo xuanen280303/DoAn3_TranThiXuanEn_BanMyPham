@@ -2,17 +2,15 @@ import { Link, useLocation } from "react-router-dom";
 import "../assets/purchase.css";
 import { HistoryOutlined, AuditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { Button, Input, Select, Table, Tag } from "antd";
+import { Button, Input, Modal, Select, Table, Tag } from "antd";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { apiSearchHoaDonBan } from "../services/hoadonban.service";
+import { apiSearchHoaDonBan, getThongTinHoaDon } from "../services/hoadonban.service";
 
 export default function PurchaseHistory() {
-  const location = useLocation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const { Search } = Input;
-
   const [tableParams, setTableParams] = useState({
     page: 1,
     pageSize: 5,
@@ -20,7 +18,7 @@ export default function PurchaseHistory() {
   });
   const [valueSearch, setValueSearch] = useState("");
   const [status, setStatus] = useState("");
-  
+  const [dataDetail, setDataDetail] = useState({});
   const handleChange = async (value) => {
     setStatus(value);
     await loadData(value);
@@ -66,12 +64,11 @@ export default function PurchaseHistory() {
         return "geekblue"; // Màu mặc định nếu không khớp với các trạng thái trên
     }
   };
-  const activeStyle = {
-    color: "#0F9A6B",
-    fontWeight: "bold",
-  };
+
   const columns = [
     { title: "Mã HDB", dataIndex: "MaHDB" },
+    { title: "Khách hàng", dataIndex: "HoTenKH" },
+    { title: "SĐT", dataIndex: "SDTKH" },
 
     {
       title: "Trạng thái",
@@ -95,10 +92,11 @@ export default function PurchaseHistory() {
       title: "Tác vụ",
       width: "120px",
       render: (_, record) => (
-        <Button style={{backgroundColor: "#0F9A6B", color: "white"}}>Chi tiết</Button>
+        <Link style={{backgroundColor: "#0F9A6B", color: "white", padding: "5px 10px", borderRadius: "5px"}} to={`/purchase-detail/${record.MaHDB}`}>Chi tiết</Link>
       ),
     },
   ];
+  
   useEffect(() => {
     loadData();
   }, [tableParams.page, tableParams.pageSize, valueSearch]);
@@ -106,39 +104,14 @@ export default function PurchaseHistory() {
   return (
     <div>
       <div className="container">
-        <div className="purchase-left">
-          <Link to="/purchaseHistory">
-            <div
-              className="purchase-left-item"
-              style={
-                location.pathname === "/purchaseHistory" ? activeStyle : {}
-              }
-            >
-              <div className="purchase-left-item-icon">
-                <HistoryOutlined />
-              </div>
-              <div className="purchase-left-item-text">Đơn hàng</div>
-            </div>
-          </Link>
-          <Link to="/changePassword">
-            <div
-              className="purchase-left-item"
-              style={location.pathname === "/changePassword" ? activeStyle : {}}
-            >
-              <div className="purchase-left-item-icon">
-                <AuditOutlined />
-              </div>
-              <div className="purchase-left-item-text">Đổi mật khẩu</div>
-            </div>
-          </Link>
-        </div>
+   
         <div className="purchase-right">
           <div className="purchase-right-title">Lịch sử mua hàng</div>
 
           <div className="purchase-right-content">
             <div style={{display: "flex", justifyContent: "space-between", gap: "10px", marginTop: "25px"}}>
             <Search
-              placeholder="Nhập mã hóa đơn bán cần tìm kiếm..."
+              placeholder="Tìm kiếm mã hoá đơn, tên khách hàng và SĐT"
               allowClear
               onSearch={onSearch}
               style={{ width: 400 }}

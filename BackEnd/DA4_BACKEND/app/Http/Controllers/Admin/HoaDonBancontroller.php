@@ -29,7 +29,7 @@ class HoaDonBancontroller extends Controller
             ]);
         }
     }
-    
+
     public function getDetailByID($MaHDB)
     {
         try {
@@ -167,6 +167,7 @@ class HoaDonBancontroller extends Controller
             $hdb = new HoaDonBan();
             $hdb->MaKH = $kh->MaKH;
             $hdb->MaNV = $request->MaNV;
+            $hdb->userId = $request->userId;
             $hdb->TrangThai = "Chờ xác nhận";
             $hdb->TongTien = $request->TongTienHDB;
             $hdb->NgayTao = now();

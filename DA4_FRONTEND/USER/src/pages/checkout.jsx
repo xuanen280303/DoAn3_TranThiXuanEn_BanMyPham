@@ -55,13 +55,7 @@ function Checkout() {
     }
     if (!khachhang.DiaChiKH.trim()) {
       newErrors.DiaChiKH = "Vui lòng nhập địa chỉ nhận hàng!";
-    } else if (
-      !/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯăẠ-ỹ0-9 ]+$/.test(
-        khachhang.DiaChiKH
-      )
-    ) {
-      newErrors.DiaChiKH = "Địa chỉ chỉ chứa chữ cái và số";
-    }
+    } 
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) {
       notification.error({
@@ -77,6 +71,7 @@ function Checkout() {
     if (!HopLe()) {
       return;
     }
+    const user = JSON.parse(localStorage.getItem("account"));
     //Truyền dữ liệu vào getHoaDonBan
     const DuLieuTam = {
       HoTenKH: khachhang.HoTenKH,
@@ -84,7 +79,7 @@ function Checkout() {
       DiaChiKH: khachhang.DiaChiKH,
       TrangThaiThanhToan: khachhang.TrangThaiThanhToan,
       TongTien: tongTien,
-      userId: JSON.parse(localStorage.getItem("account")).id,
+      userId: user.id,
       MaMP: cart.map((item) => item.MaMP),
       SLTon: cart.map((item) => item.SoLuong),
     };
@@ -92,7 +87,7 @@ function Checkout() {
     try {
       const response = await setHoadonban(DuLieuTam);
       if (response.status === 200) {
-        navigate(`/thanhtoanqr/${response?.hoaDonBan.MaHDB}`);
+        navigate(`/success/${response?.hoaDonBan.MaHDB}`);
         localStorage.removeItem('cart');
       } else {
         console.error("Lỗi khi tạo hóa đơn bán:", response.message);

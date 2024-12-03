@@ -1,17 +1,6 @@
-table {
-    margin-top: 15px;
-    /* margin-left: 290px; */
-    width: 60%;
-}
+
 tr {
     line-height: 27px;
-}
-table,
-th,
-td {
-    /* border: 1px solid black; */
-    border-collapse: collapse;
-    text-align: center;
 }
 .dam {
     font-weight: bold;

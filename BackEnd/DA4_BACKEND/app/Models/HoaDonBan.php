@@ -11,4 +11,9 @@ class HoaDonBan extends Model
     protected $table = 'HoaDonBan';
     public $timestamps = false;
     protected $primaryKey = 'MaHDB';
+
+    public function khachHang()
+    {
+        return $this->belongsTo(KhachHang::class, 'MaKH', 'MaKH');
+    }
 }

@@ -29,6 +29,7 @@ class HoaDonBanController extends Controller
                 $hdb->MaKH = $kh->MaKH;
                 $hdb->TrangThai = "Chờ xác nhận";
                 $hdb->TongTien = $request->TongTien;
+                $hdb->userId = $request->userId;
                 $hdb->TrangThaiThanhToan = $request->TrangThaiThanhToan;
                 $hdb->NgayTao = now();
                 $hdb->save();
@@ -85,11 +86,18 @@ class HoaDonBanController extends Controller
         $status = $request->input('status');
         $page = $request->input('page');
         $totalPage = $request->input('pageSize');
-        $query = HoaDonBan::query();
+        
+        // Join với bảng KhachHang để lấy thông tin khách hàng
+        $query = HoaDonBan::join('KhachHang', 'HoaDonBan.MaKH', '=', 'KhachHang.MaKH')
+            ->select('HoaDonBan.*', 'KhachHang.HoTenKH', 'KhachHang.SDTKH', 'KhachHang.DiaChiKH')
+            ->orderBy('HoaDonBan.NgayTao', 'desc');
+        
         if ($search) {
             $query->where(function ($query) use ($search) {
-                $query->where('MaHDB', 'like', '%' . $search . '%');                    
-                });
+                $query->where('MaHDB', 'like', '%' . $search . '%')
+                      ->orWhere('HoTenKH', 'like', '%' . $search . '%')
+                      ->orWhere('SDTKH', 'like', '%' . $search . '%');                    
+            });
         }
         if ($status) {
             $query->where('TrangThai', $status);
@@ -115,30 +123,33 @@ class HoaDonBanController extends Controller
     public function getThongTinHoaDon($MaHDB)
     {
         try {
-            $hdb = HoaDonBan::where('MaHDB', $MaHDB)->first();
+            // Lấy thông tin hóa đơn bán và khách hàng qua relationship
+            $hdb = HoaDonBan::with('khachHang')
+                ->where('MaHDB', $MaHDB)
+                ->first();
+
             if (!$hdb) {
                 return response()->json([
                     'message' => 'Hóa đơn bán không tồn tại',
                     'status' => 404
                 ]);
             }
-            $kh = KhachHang::find($hdb->MaKH);
-            if (!$kh) {
-                return response()->json([
-                    'message' => 'Khách hàng không tồn tại',
-                    'status' => 404
-                ]);
-            }
 
+            // Lấy chi tiết hóa đơn và thông tin mỹ phẩm
             $cthdb = ChiTietHoaDonBan::join('MyPham', 'MyPham.MaMP', '=', 'ChiTietHoaDonBan.MaMP')
                 ->select('ChiTietHoaDonBan.*', 'MyPham.TenMP', 'MyPham.GiaBan', 'MyPham.SLTon')
                 ->where('ChiTietHoaDonBan.MaHDB', $MaHDB)
                 ->get();
 
+            // Lấy lịch sử trạng thái
+            $lichSu = LichSu::where('MaHDB', $MaHDB)
+                ->orderBy('NgayTao', 'desc')
+                ->get();
+
             return response()->json([
                 'hoaDonBan' => $hdb,
-                'khachhang' => $kh,
-                'chitiethdb' => $cthdb,
+                'chiTietHDB' => $cthdb,
+                'lichSuTrangThai' => $lichSu,
                 'status' => 200,
                 'message' => 'Thông tin hoá đơn'
             ]);

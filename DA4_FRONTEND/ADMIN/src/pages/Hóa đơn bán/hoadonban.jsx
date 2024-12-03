@@ -260,7 +260,7 @@ const HoaDonBan = () => {
           >
             
             <Search
-              placeholder="Nhập mã hóa đơn bán cần tìm kiếm..."
+              placeholder="Tìm kiếm mã hđ và tên khách hàng, sđt"
               allowClear
               onSearch={onSearch}
               style={{ width: 400 }}

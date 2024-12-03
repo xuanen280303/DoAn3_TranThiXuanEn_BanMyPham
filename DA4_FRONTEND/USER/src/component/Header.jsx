@@ -48,11 +48,9 @@ function Header() {
                       {accountProfile?.name}
                     </span>
                     <ul className="submenu" style={{ position: "absolute", top: "100%", left: "0" }}>
+            
                       <li>
-                        <a >Thông tin cá nhân</a>
-                      </li>
-                      <li>
-                        <Link to="/purchaseHistory">Đơn hàng</Link>
+                        <Link to="/purchaseHistory">Lịch sử mua hàng</Link>
                       </li>
                       <li>
                         <a onClick={logOut}>Đăng xuất</a>

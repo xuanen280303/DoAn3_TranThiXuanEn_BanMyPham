@@ -27,7 +27,9 @@
     background-origin: 0px 0px 25px 20px rgba(255, 255, 255, 0.8);
 }
 .maqr{
-    margin-left: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .muahang {
     display: flex;
